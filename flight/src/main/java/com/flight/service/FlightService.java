@@ -31,10 +31,12 @@ public class FlightService implements IFlightSearchService {
 
         private static ConcurrentHashMap<FlightRequest, String> flightRequestToFlightNumberMap = new ConcurrentHashMap<FlightRequest, String>();
 
+        private static String MOCKED_FLIGHT_INITIAL_DATE="2021-10-21";
+
         static {//Initial Values, after that dynamically new values will be added as flight number, but fliqhts will only will be available as mentioned below in list
-            flightRequestToFlightNumberMap.put(new FlightRequest("DXB","LHE", "2021-10-21"), "EK123");
-            flightRequestToFlightNumberMap.put(new FlightRequest("DXB","LHR", "2021-10-21"), "EK456");
-            flightRequestToFlightNumberMap.put(new FlightRequest("DXB","ISB", "2021-10-21"), "EK789");
+            flightRequestToFlightNumberMap.put(new FlightRequest("DXB","LHE", MOCKED_FLIGHT_INITIAL_DATE), "EK123");
+            flightRequestToFlightNumberMap.put(new FlightRequest("DXB","LHR", MOCKED_FLIGHT_INITIAL_DATE), "EK456");
+            flightRequestToFlightNumberMap.put(new FlightRequest("DXB","ISB", MOCKED_FLIGHT_INITIAL_DATE), "EK789");
         }
 
         private static final Logger logger = LoggerFactory.getLogger(FlightService.class);
@@ -123,6 +125,8 @@ public class FlightService implements IFlightSearchService {
                     flightNumber = "EK-"+UUID.randomUUID().toString();
                     flightNumberToDateMap.put(flightNumber, currentDatetime);//add new flight info
                     flightRequestToFlightNumberMap.put(new FlightRequest(airportOfDepartureCode, airportOfArrivalCode, currentDatetime.format(DateTimeFormatter.ISO_LOCAL_DATE)),flightNumber);
+                    // remove old entry from map on previous date. remove method will not throw exception if entry already removed.
+                    flightRequestToFlightNumberMap.remove(new FlightRequest(airportOfDepartureCode, airportOfArrivalCode, MOCKED_FLIGHT_INITIAL_DATE),oldFlightNumber);
                     flightNumberToDateMap.remove(oldFlightNumber);//remove old value
 
                     logger.info("Flight Number {} changed to {} with new Date {} in map ",oldFlightNumber, flightNumber, currentDatetime);
