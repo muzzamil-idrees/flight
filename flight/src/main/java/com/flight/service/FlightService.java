@@ -79,7 +79,7 @@ public class FlightService implements IFlightSearchService {
                     flightRequest.getAirportOfDepartureCode(),
                     flightRequest.getAirportOfArrivalCode()));
 
-            logger.info("searchFlight request completed");
+            logger.info("searchFlight request completed with response {}",response);
             return response;
 
         }
