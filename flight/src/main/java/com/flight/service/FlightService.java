@@ -125,12 +125,12 @@ public class FlightService implements IFlightSearchService {
                     flightRequestToFlightNumberMap.put(new FlightRequest(airportOfDepartureCode, airportOfArrivalCode, currentDatetime.format(DateTimeFormatter.ISO_LOCAL_DATE)),flightNumber);
                     flightNumberToDateMap.remove(oldFlightNumber);//remove old value
 
-                    logger.debug("Flight Number {} changed to {} with new Date {} in map ",oldFlightNumber, flightNumber, dateValueOfFlightFromMap.get());
+                    logger.info("Flight Number {} changed to {} with new Date {} in map ",oldFlightNumber, flightNumber, dateValueOfFlightFromMap.get());
                 }
             }
             else {
                 flightNumberToDateMap.put(flightNumber, dateOfFlightNow);
-                logger.debug("Flight Number {} with Date {} added in map ",flightNumber, dateOfFlightNow);
+                logger.info("Flight Number {} with Date {} added in map ",flightNumber, dateOfFlightNow);
             }
 
             logger.info("returning flight number");
