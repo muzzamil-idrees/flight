@@ -64,4 +64,10 @@ public class FlightInquiryController extends BaseController{
 
         return new ResponseEntity<>(response, constructResponseHeader(), resolveHttpStatus(responseStatusCode));
     }
+
+    @GetMapping ("/flights")
+    private ResponseEntity<?> searchFlight(@RequestHeader HttpHeaders headers) {
+        return new ResponseEntity<>(flightSearchService.getAllFlights(),resolveHttpStatus(SUCCESS_RESPONSE));
+    }
+
 }
