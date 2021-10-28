@@ -86,7 +86,12 @@ public class FlightService implements IFlightSearchService {
 
         }
 
-        private String getFlightNumber(String date, String airportOfDepartureCode, String airportOfArrivalCode) {
+    @Override
+    public ConcurrentHashMap<FlightRequest,String> getAllFlights() {
+        return flightRequestToFlightNumberMap;
+    }
+
+    private String getFlightNumber(String date, String airportOfDepartureCode, String airportOfArrivalCode) {
             logger.info("getting flight number");
 
 
