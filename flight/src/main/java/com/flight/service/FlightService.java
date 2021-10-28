@@ -114,7 +114,7 @@ public class FlightService implements IFlightSearchService {
 
                 LocalDateTime currentDatetime = LocalDateTime.now();
 
-                logger.info("Flight number change interval is {}",flightNumberChangeIntervalMins);
+                logger.info("Flight number change interval in mins is {}",flightNumberChangeIntervalMins);
 
                 if(currentDatetime.minusMinutes(flightNumberChangeIntervalMins)
                                 .isAfter(dateValueOfFlightFromMap.get())) {
