@@ -9,7 +9,11 @@ class DemoApplicationTests {
 	@Test
 	void contextLoads() {
 
-		//Sample JSON request {flightDate='2021-01-21', airportOfDepartureCode='DXB', airportOfArrivalCode='LHE'}
+		//Sample JSON request {
+		//    "flightDate":"2021-10-21",
+		//    "airportOfDepartureCode":"DXB",
+		//    "airportOfArrivalCode":"LHE"
+		//    }
 	}
 
 }
